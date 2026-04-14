@@ -2,220 +2,172 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>PCGD - Control Documental Municipal</title>
+    <title>PCGD - Dashboard Municipal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap 5.3 -->
     <link rel="stylesheet" href="https://jsdelivr.net" />
+    <!-- Google Fonts para un look más moderno -->
+    <link href="https://googleapis.com" rel="stylesheet" />
     <script src="https://jsdelivr.net"></script>
+
     <style>
-      .card-kpi {
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f9fa;
+        color: #334155;
+      }
+
+      /* Estilo para las tarjetas de métricas (KPIs) */
+      .kpi-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s;
-        cursor: default;
       }
-      .card-kpi:hover {
-        transform: scale(1.02);
+      .kpi-card:hover {
+        transform: translateY(-5px);
       }
-      .status-pill {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 5px;
+      .kpi-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+      }
+      .kpi-value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0;
+      }
+
+      /* Colores de acento para las barras laterales de las tarjetas */
+      .border-primary-custom {
+        border-left: 5px solid #3b82f6;
+      }
+      .border-warning-custom {
+        border-left: 5px solid #f59e0b;
+      }
+      .border-danger-custom {
+        border-left: 5px solid #ef4444;
+      }
+      .border-success-custom {
+        border-left: 5px solid #10b981;
+      }
+
+      /* Navbar estilo gubernamental elegante */
+      .navbar-gov {
+        background-color: #1e293b;
+        padding: 1rem 2rem;
+      }
+
+      /* Contenedores de contenido */
+      .content-card {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 24px;
       }
     </style>
   </head>
-  <body class="bg-light">
-    <!-- NAVBAR PRINCIPAL -->
-    <nav
-      class="navbar navbar-dark shadow-sm p-3"
-      style="background-color: #2c3e50"
-    >
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark navbar-gov mb-4 shadow">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1"
           >🏛️ Gestión Documental Municipal 2024-2027</span
         >
-        <div class="d-flex text-white small">
-          Usuario: Administrador |
-          <a href="javascript:void(0);" class="text-warning ms-2">Salir</a>
+        <div class="text-white small">
+          <span class="opacity-75">Usuario:</span>
+          <strong>Administrador</strong> |
+          <a
+            href="javascript:void(0);"
+            class="text-info text-decoration-none ms-2"
+            >Cerrar Sesión</a
+          >
         </div>
       </div>
     </nav>
 
-    <main class="container py-4">
-      <!-- DASHBOARD DE CONTROL -->
-      <div class="row g-3 mb-4">
-        <div class="col-md-3">
-          <div
-            class="card card-kpi bg-white border-0 shadow-sm p-3 border-start border-primary border-4"
-          >
-            <small class="text-muted fw-bold">TOTAL EXPEDIENTES</small>
-            <h2 class="mb-0">1,240</h2>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div
-            class="card card-kpi bg-white border-0 shadow-sm p-3 border-start border-warning border-4"
-          >
-            <small class="text-muted fw-bold">EN REVISIÓN</small>
-            <h2 class="mb-0">85</h2>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div
-            class="card card-kpi bg-white border-0 shadow-sm p-3 border-start border-danger border-4"
-          >
-            <small class="text-muted fw-bold">PENDIENTES DE FIRMA</small>
-            <h2 class="mb-0">32</h2>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div
-            class="card card-kpi bg-white border-0 shadow-sm p-3 border-start border-success border-4"
-          >
-            <small class="text-muted fw-bold">ARCHIVADOS (DCN)</small>
-            <h2 class="mb-0">1,123</h2>
-          </div>
-        </div>
-      </div>
-
+    <div class="container">
+      <!-- SECCIÓN DE MÉTRICAS (KPIs) -->
       <div class="row g-4 mb-4">
-        <!-- GRÁFICO DE CARGA POR DIRECCIÓN -->
-        <div class="col-md-7">
-          <div class="card border-0 shadow-sm p-3">
-            <h6 class="fw-bold mb-3">Distribución Documental por Dirección</h6>
-            <canvas id="chartDirecciones" height="150"></canvas>
+        <div class="col-md-3">
+          <div class="kpi-card border-primary-custom">
+            <p class="kpi-title">Total Expedientes</p>
+            <h2 class="kpi-value text-primary">1,240</h2>
           </div>
         </div>
-        <!-- ALERTAS DE VENCIMIENTO -->
-        <div class="col-md-5">
-          <div class="card border-0 shadow-sm p-3">
-            <h6 class="fw-bold mb-3 text-danger">
-              Próximos a Vencer (Plazos Legales)
-            </h6>
-            <ul class="list-group list-group-flush small">
-              <li class="list-group-item d-flex justify-content-between">
-                Contrato de Arrendamiento - Tesorería <span>Hace 2 días</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                Convenio con Estado - Secretaría <span>Hoy</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                Licencia de Software - Sistemas <span>En 3 días</span>
-              </li>
-            </ul>
+        <div class="col-md-3">
+          <div class="kpi-card border-warning-custom">
+            <p class="kpi-title">En Revisión</p>
+            <h2 class="kpi-value text-warning">85</h2>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="kpi-card border-danger-custom">
+            <p class="kpi-title">Pendientes de Firma</p>
+            <h2 class="kpi-value text-danger">32</h2>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="kpi-card border-success-custom">
+            <p class="kpi-title">Archivados (DCN)</p>
+            <h2 class="kpi-value text-success">1,123</h2>
           </div>
         </div>
       </div>
 
-      <!-- ACORDEÓN DE GESTIÓN POR ÁREA -->
-      <div class="accordion shadow-sm" id="accGestion">
-        <!-- TESORERÍA -->
-        <div class="accordion-item border-0">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#areaTesoreria"
-            >
-              <strong>📦 Tesorería (Recaudación y Egreso)</strong>
-            </button>
-          </h2>
-          <div
-            id="areaTesoreria"
-            class="accordion-collapse collapse"
-            data-bs-parent="#accGestion"
-          >
-            <div class="accordion-body">
-              <table class="table table-hover small">
-                <thead>
-                  <tr>
-                    <th>Tipo Documento</th>
-                    <th>Fisico/Digital</th>
-                    <th>Último Folio</th>
-                    <th>Estatus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Cuentas Públicas</td>
-                    <td>Digital</td>
-                    <td>CP-2024-001</td>
-                    <td><span class="badge bg-success">Validado</span></td>
-                  </tr>
-                  <tr>
-                    <td>Comprobantes Fiscales</td>
-                    <td>Ambos</td>
-                    <td>CF-2024-890</td>
-                    <td>
-                      <span class="badge bg-warning text-dark">En Proceso</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+      <div class="row">
+        <!-- GRÁFICO -->
+        <div class="col-lg-8">
+          <div class="content-card">
+            <h6 class="fw-bold mb-4">Distribución Documental por Dirección</h6>
+            <div style="height: 300px">
+              <canvas id="chartDirecciones"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- SECRETARÍA GENERAL -->
-        <div class="accordion-item border-0">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#areaSecretaria"
-            >
-              <strong>📜 Secretaría General (Actas y Acuerdos)</strong>
-            </button>
-          </h2>
-          <div
-            id="areaSecretaria"
-            class="accordion-collapse collapse"
-            data-bs-parent="#accGestion"
-          >
-            <div class="accordion-body">
-              <table class="table table-hover small">
-                <thead>
-                  <tr>
-                    <th>Tipo</th>
-                    <th>Sesión de Cabildo</th>
-                    <th>Fecha</th>
-                    <th>Firma Electrónica</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Acta Ordinaria 05</td>
-                    <td>05/2024</td>
-                    <td>10-Abr-2024</td>
-                    <td><span class="text-success">✔ Firmada</span></td>
-                  </tr>
-                  <tr>
-                    <td>Acta Extraordinaria 02</td>
-                    <td>02/2024</td>
-                    <td>12-Abr-2024</td>
-                    <td><span class="text-danger">✘ Pendiente</span></td>
-                  </tr>
-                </tbody>
-              </table>
+        <!-- ALERTAS RÁPIDAS -->
+        <div class="col-lg-4">
+          <div class="content-card">
+            <h6 class="fw-bold mb-3">Alertas del Sistema</h6>
+            <div class="alert alert-warning py-2 small border-0 shadow-sm">
+              ⚠️ 12 Expedientes vencen hoy.
             </div>
+            <div class="alert alert-info py-2 small border-0 shadow-sm">
+              ℹ️ 5 Actas listas para firma digital.
+            </div>
+            <hr />
+            <button class="btn btn-outline-primary btn-sm w-100 mb-2">
+              Descargar Reporte Diario
+            </button>
+            <button class="btn btn-primary btn-sm w-100">Nuevo Registro</button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
-    <footer class="py-3 text-center text-muted border-top mt-5 bg-white">
-      PCGD Municipal - Plataforma de Control Institucional
+    <footer class="text-center py-4 text-muted mt-5">
+      <small
+        >Plataforma de Gestión Documental Municipal &copy; 2024 | Versión
+        Demo</small
+      >
     </footer>
 
+    <!-- SCRIPTS -->
+    <script src="https://jsdelivr.net"></script>
     <script>
-      // Gráfico de Barras - Carga Documental
       const ctx = document.getElementById("chartDirecciones").getContext("2d");
       new Chart(ctx, {
         type: "bar",
         data: {
           labels: [
-            "Tesoreria",
+            "Tesorería",
             "Secretaría",
             "Sindicatura",
             "Contraloría",
@@ -223,20 +175,24 @@
           ],
           datasets: [
             {
-              label: "Expedientes Registrados",
-              data: [450, 320, 150, 210, 400],
-              backgroundColor: "#34495e",
+              label: "Expedientes",
+              data: [450, 320, 180, 210, 80],
+              backgroundColor: "#3b82f6",
+              borderRadius: 8,
+              barThickness: 25,
             },
           ],
         },
-        options: { indexAxis: "y", plugins: { legend: { display: false } } },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { display: false } },
+            x: { grid: { display: false } },
+          },
+        },
       });
-
-      // Desactivar navegación para Demo
-      document
-        .querySelectorAll("a")
-        .forEach((l) => l.setAttribute("href", "javascript:void(0);"));
     </script>
-    <script src="https://jsdelivr.net"></script>
   </body>
 </html>
