@@ -2,9 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Monitoreo de Procesos Sustantivos | Municipal</title>
+    <title>Sistema de Gestión y Control Documental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap 5.3 -->
     <link rel="stylesheet" href="https://jsdelivr.net" />
+    <!-- Google Fonts -->
     <link href="https://googleapis.com" rel="stylesheet" />
     <script src="https://jsdelivr.net"></script>
     <style>
@@ -12,174 +14,212 @@
         font-family: "Inter", sans-serif;
         background-color: #f1f5f9;
         color: #1e293b;
-      }
-      .navbar-gov {
-        background-color: #0f172a;
-        padding: 1rem 2rem;
-        border-bottom: 4px solid #94a3b8;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding-top: 130px; /* Espacio para el header fijo */
       }
 
-      /* Tarjetas de Unidad Administrativa */
+      /* HEADER FIJO */
+      #header-fix {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1050;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand {
+        padding: 15px;
+        color: #334155;
+      }
+      .nav-link {
+        color: #ffffff !important;
+        padding: 10px 15px !important;
+      }
+      .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      .dropdown-menu {
+        background-color: #566573;
+        border: none;
+      }
+      .dropdown-item {
+        color: white;
+      }
+      .dropdown-item:hover {
+        background-color: #455a64;
+        color: white;
+      }
+
+      /* CONTENIDO */
+      main {
+        flex: 1;
+      }
+
+      /* TARJETAS DE UNIDAD ADMINISTRATIVA */
       .unit-card {
         background: white;
         border-radius: 12px;
         border: none;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         margin-bottom: 1.5rem;
-        overflow: hidden;
       }
       .unit-header {
         background: #f8fafc;
         padding: 1rem 1.5rem;
         border-bottom: 1px solid #e2e8f0;
+        border-radius: 12px 12px 0 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-      .unit-header h5 {
-        margin: 0;
-        font-weight: 700;
-        color: #334155;
-      }
-
-      /* Indicadores de Proceso Sustantivo */
       .process-row {
         padding: 1rem 1.5rem;
         border-bottom: 1px solid #f1f5f9;
-        transition: background 0.2s;
       }
-      .process-row:hover {
-        background: #f8fafc;
+      .process-row:last-child {
+        border-bottom: none;
       }
-      .process-name {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #475569;
-      }
-
-      /* Progress Bars personalizadas */
       .progress {
         height: 8px;
         border-radius: 10px;
         background-color: #e2e8f0;
       }
-      .progress-bar-sustantiva {
-        background-color: #3b82f6;
-        border-radius: 10px;
-      }
-
       .status-badge {
         font-size: 0.75rem;
         padding: 0.4em 0.8em;
         border-radius: 50px;
         font-weight: 600;
       }
-      .badge-priority {
-        background-color: #fee2e2;
-        color: #991b1b;
-      } /* Alta Prioridad */
+
+      /* FOOTER SOLICITADO */
+      footer {
+        background-color: #566573;
+        color: white;
+        padding: 15px 0;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-dark navbar-gov mb-4">
-      <div class="container-fluid">
-        <span class="navbar-brand h1 mb-0"
-          >🏛️ Monitor de Procesos Sustantivos Municipales</span
-        >
-        <div class="text-white small">
-          <strong>Periodo Actual:</strong> Abril 2024
-        </div>
+    <!-- CABECERA FIJA -->
+    <div id="header-fix" class="header fixed">
+      <div class="site-width">
+        <nav class="navbar expand" style="background-color: #d5d8dc">
+          <div class="navbar-brand align-text-left">
+            <strong>Sistema de Gestión y Control Documental</strong>
+          </div>
+        </nav>
       </div>
-    </nav>
+      <div class="top-menu">
+        <nav
+          class="navbar navbar-expand justify-content-end px-3"
+          style="background-color: #566573"
+        >
+          <ul class="navbar-nav flex-row gap-2 fw-bold">
+            <li id="home" class="nav-item">
+              <a class="nav-link" href="javascript:void(0);">Inicio</a>
+            </li>
+            <li id="records">
+              <a class="nav-link" href="javascript:void(0);">Registros</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                >Año</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0);">2025</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0);">2024</a>
+                </li>
+              </ul>
+            </li>
+            <li id="logout">
+              <a class="nav-link" href="javascript:void(0);">Cerrar sesión</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
 
-    <div class="container">
-      <!-- RESUMEN EJECUTIVO -->
+    <!-- CUERPO DEL MONITOR -->
+    <main class="container py-4">
       <div class="row mb-4">
-        <div class="col-12">
-          <div class="card border-0 shadow-sm p-3 bg-white">
-            <div class="row text-center">
-              <div class="col-md-4 border-end">
-                <small class="text-muted d-block">PROCESOS CRÍTICOS</small>
-                <span class="h4 fw-bold text-danger">12</span>
-              </div>
-              <div class="col-md-4 border-end">
-                <small class="text-muted d-block"
-                  >AVANCE GLOBAL DOCUMENTAL</small
+        <div class="col-12 text-center">
+          <div class="card border-0 shadow-sm p-4 bg-white">
+            <h5 class="text-muted mb-3">
+              Panel de Control de Procesos Sustantivos
+            </h5>
+            <div class="row">
+              <div class="col-md-6 border-end">
+                <small class="text-muted d-block text-uppercase fw-bold"
+                  >Cumplimiento Global</small
                 >
-                <span class="h4 fw-bold text-primary">78%</span>
+                <span class="h2 fw-bold text-success">82%</span>
               </div>
-              <div class="col-md-4">
-                <small class="text-muted d-block">UNIDADES MONITOREADAS</small>
-                <span class="h4 fw-bold">08</span>
+              <div class="col-md-6">
+                <small class="text-muted d-block text-uppercase fw-bold"
+                  >Procesos en Alerta</small
+                >
+                <span class="h2 fw-bold text-danger">04</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- LISTADO POR UNIDAD ADMINISTRATIVA -->
       <div class="row">
-        <!-- TESORERÍA -->
+        <!-- UNIDAD: TESORERÍA -->
         <div class="col-md-6">
           <div class="unit-card">
             <div class="unit-header">
-              <h5>📦 Tesorería Municipal</h5>
-              <span class="status-badge badge-priority">Crítico</span>
+              <h6 class="mb-0 fw-bold">📦 Tesorería Municipal</h6>
+              <span class="status-badge bg-danger text-white">Crítico</span>
             </div>
             <div class="card-body p-0">
               <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name">Recaudación Impuesto Predial</span>
-                  <span class="small fw-bold">92%</span>
+                <div class="d-flex justify-content-between mb-1 small fw-bold">
+                  <span>Recaudación Predial 2024</span>
+                  <span>92%</span>
                 </div>
                 <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-sustantiva"
-                    style="width: 92%"
-                  ></div>
+                  <div class="progress-bar bg-success" style="width: 92%"></div>
                 </div>
               </div>
               <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name">Cuenta Pública Mensual</span>
-                  <span class="small fw-bold">45%</span>
+                <div class="d-flex justify-content-between mb-1 small fw-bold">
+                  <span>Cierre de Cuenta Pública Mensual</span>
+                  <span>35%</span>
                 </div>
                 <div class="progress">
-                  <div class="progress-bar bg-warning" style="width: 45%"></div>
-                </div>
-              </div>
-              <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name">Pago a Proveedores</span>
-                  <span class="small fw-bold">60%</span>
-                </div>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-sustantiva"
-                    style="width: 60%"
-                  ></div>
+                  <div class="progress-bar bg-danger" style="width: 35%"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SECRETARÍA GENERAL -->
+        <!-- UNIDAD: SECRETARÍA GENERAL -->
         <div class="col-md-6">
           <div class="unit-card">
             <div class="unit-header">
-              <h5>📜 Secretaría General</h5>
+              <h6 class="mb-0 fw-bold">📜 Secretaría General</h6>
               <span class="status-badge bg-success text-white"
-                >Al corriente</span
+                >Al Corriente</span
               >
             </div>
             <div class="card-body p-0">
               <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name"
-                    >Formalización de Actas de Cabildo</span
-                  >
-                  <span class="small fw-bold">100%</span>
+                <div class="d-flex justify-content-between mb-1 small fw-bold">
+                  <span>Formalización de Actas de Cabildo</span>
+                  <span>100%</span>
                 </div>
                 <div class="progress">
                   <div
@@ -189,87 +229,23 @@
                 </div>
               </div>
               <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name"
-                    >Publicación en Periódico Oficial</span
-                  >
-                  <span class="small fw-bold">80%</span>
+                <div class="d-flex justify-content-between mb-1 small fw-bold">
+                  <span>Publicación de Bandos y Reglamentos</span>
+                  <span>75%</span>
                 </div>
                 <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-sustantiva"
-                    style="width: 80%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CONTRALORÍA / ÓRGANO INTERNO -->
-        <div class="col-md-6">
-          <div class="unit-card border-start border-4 border-danger">
-            <div class="unit-header">
-              <h5>🔍 Contraloría Interna</h5>
-              <span class="text-danger small fw-bold">Bajo Revisión</span>
-            </div>
-            <div class="card-body p-0">
-              <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name">Declaraciones Patrimoniales</span>
-                  <span class="small fw-bold">25%</span>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar bg-danger" style="width: 25%"></div>
-                </div>
-              </div>
-              <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name">Auditorías de Desempeño</span>
-                  <span class="small fw-bold">55%</span>
-                </div>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-sustantiva"
-                    style="width: 55%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SERVICIOS PÚBLICOS -->
-        <div class="col-md-6">
-          <div class="unit-card">
-            <div class="unit-header">
-              <h5>🧹 Servicios Públicos</h5>
-              <span class="status-badge bg-info text-white">Operativo</span>
-            </div>
-            <div class="card-body p-0">
-              <div class="process-row">
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="process-name"
-                    >Bitácoras de Recolección de Residuos</span
-                  >
-                  <span class="small fw-bold">88%</span>
-                </div>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-sustantiva"
-                    style="width: 88%"
-                  ></div>
+                  <div class="progress-bar bg-primary" style="width: 75%"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <footer class="py-4 text-center text-muted small">
-      Sistema de Inteligencia Gubernamental &copy; 2024 | Enfoque en Procesos
-      Sustantivos
+    <!-- FOOTER SOLICITADO ACTUALIZADO -->
+    <footer class="text-center">
+      Sistema de Gestión y Control Documental ©
     </footer>
 
     <script src="https://jsdelivr.net"></script>
