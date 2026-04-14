@@ -2,197 +2,276 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>PCGD - Dashboard Municipal</title>
+    <title>Monitoreo de Procesos Sustantivos | Municipal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap 5.3 -->
     <link rel="stylesheet" href="https://jsdelivr.net" />
-    <!-- Google Fonts para un look más moderno -->
     <link href="https://googleapis.com" rel="stylesheet" />
     <script src="https://jsdelivr.net"></script>
-
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f8f9fa;
+        background-color: #f1f5f9;
+        color: #1e293b;
+      }
+      .navbar-gov {
+        background-color: #0f172a;
+        padding: 1rem 2rem;
+        border-bottom: 4px solid #94a3b8;
+      }
+
+      /* Tarjetas de Unidad Administrativa */
+      .unit-card {
+        background: white;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+      }
+      .unit-header {
+        background: #f8fafc;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .unit-header h5 {
+        margin: 0;
+        font-weight: 700;
         color: #334155;
       }
 
-      /* Estilo para las tarjetas de métricas (KPIs) */
-      .kpi-card {
-        background: #ffffff;
-        border: none;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
+      /* Indicadores de Proceso Sustantivo */
+      .process-row {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #f1f5f9;
+        transition: background 0.2s;
       }
-      .kpi-card:hover {
-        transform: translateY(-5px);
+      .process-row:hover {
+        background: #f8fafc;
       }
-      .kpi-title {
+      .process-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #475569;
+      }
+
+      /* Progress Bars personalizadas */
+      .progress {
+        height: 8px;
+        border-radius: 10px;
+        background-color: #e2e8f0;
+      }
+      .progress-bar-sustantiva {
+        background-color: #3b82f6;
+        border-radius: 10px;
+      }
+
+      .status-badge {
         font-size: 0.75rem;
-        font-weight: 700;
-        color: #64748b;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 8px;
+        padding: 0.4em 0.8em;
+        border-radius: 50px;
+        font-weight: 600;
       }
-      .kpi-value {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0;
-      }
-
-      /* Colores de acento para las barras laterales de las tarjetas */
-      .border-primary-custom {
-        border-left: 5px solid #3b82f6;
-      }
-      .border-warning-custom {
-        border-left: 5px solid #f59e0b;
-      }
-      .border-danger-custom {
-        border-left: 5px solid #ef4444;
-      }
-      .border-success-custom {
-        border-left: 5px solid #10b981;
-      }
-
-      /* Navbar estilo gubernamental elegante */
-      .navbar-gov {
-        background-color: #1e293b;
-        padding: 1rem 2rem;
-      }
-
-      /* Contenedores de contenido */
-      .content-card {
-        background: white;
-        border-radius: 12px;
-        padding: 24px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        margin-bottom: 24px;
-      }
+      .badge-priority {
+        background-color: #fee2e2;
+        color: #991b1b;
+      } /* Alta Prioridad */
     </style>
   </head>
   <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-dark navbar-gov mb-4 shadow">
+    <nav class="navbar navbar-dark navbar-gov mb-4">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1"
-          >🏛️ Gestión Documental Municipal 2024-2027</span
+        <span class="navbar-brand h1 mb-0"
+          >🏛️ Monitor de Procesos Sustantivos Municipales</span
         >
         <div class="text-white small">
-          <span class="opacity-75">Usuario:</span>
-          <strong>Administrador</strong> |
-          <a
-            href="javascript:void(0);"
-            class="text-info text-decoration-none ms-2"
-            >Cerrar Sesión</a
-          >
+          <strong>Periodo Actual:</strong> Abril 2024
         </div>
       </div>
     </nav>
 
     <div class="container">
-      <!-- SECCIÓN DE MÉTRICAS (KPIs) -->
-      <div class="row g-4 mb-4">
-        <div class="col-md-3">
-          <div class="kpi-card border-primary-custom">
-            <p class="kpi-title">Total Expedientes</p>
-            <h2 class="kpi-value text-primary">1,240</h2>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="kpi-card border-warning-custom">
-            <p class="kpi-title">En Revisión</p>
-            <h2 class="kpi-value text-warning">85</h2>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="kpi-card border-danger-custom">
-            <p class="kpi-title">Pendientes de Firma</p>
-            <h2 class="kpi-value text-danger">32</h2>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="kpi-card border-success-custom">
-            <p class="kpi-title">Archivados (DCN)</p>
-            <h2 class="kpi-value text-success">1,123</h2>
+      <!-- RESUMEN EJECUTIVO -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card border-0 shadow-sm p-3 bg-white">
+            <div class="row text-center">
+              <div class="col-md-4 border-end">
+                <small class="text-muted d-block">PROCESOS CRÍTICOS</small>
+                <span class="h4 fw-bold text-danger">12</span>
+              </div>
+              <div class="col-md-4 border-end">
+                <small class="text-muted d-block"
+                  >AVANCE GLOBAL DOCUMENTAL</small
+                >
+                <span class="h4 fw-bold text-primary">78%</span>
+              </div>
+              <div class="col-md-4">
+                <small class="text-muted d-block">UNIDADES MONITOREADAS</small>
+                <span class="h4 fw-bold">08</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- LISTADO POR UNIDAD ADMINISTRATIVA -->
       <div class="row">
-        <!-- GRÁFICO -->
-        <div class="col-lg-8">
-          <div class="content-card">
-            <h6 class="fw-bold mb-4">Distribución Documental por Dirección</h6>
-            <div style="height: 300px">
-              <canvas id="chartDirecciones"></canvas>
+        <!-- TESORERÍA -->
+        <div class="col-md-6">
+          <div class="unit-card">
+            <div class="unit-header">
+              <h5>📦 Tesorería Municipal</h5>
+              <span class="status-badge badge-priority">Crítico</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name">Recaudación Impuesto Predial</span>
+                  <span class="small fw-bold">92%</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-sustantiva"
+                    style="width: 92%"
+                  ></div>
+                </div>
+              </div>
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name">Cuenta Pública Mensual</span>
+                  <span class="small fw-bold">45%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-warning" style="width: 45%"></div>
+                </div>
+              </div>
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name">Pago a Proveedores</span>
+                  <span class="small fw-bold">60%</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-sustantiva"
+                    style="width: 60%"
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- ALERTAS RÁPIDAS -->
-        <div class="col-lg-4">
-          <div class="content-card">
-            <h6 class="fw-bold mb-3">Alertas del Sistema</h6>
-            <div class="alert alert-warning py-2 small border-0 shadow-sm">
-              ⚠️ 12 Expedientes vencen hoy.
+        <!-- SECRETARÍA GENERAL -->
+        <div class="col-md-6">
+          <div class="unit-card">
+            <div class="unit-header">
+              <h5>📜 Secretaría General</h5>
+              <span class="status-badge bg-success text-white"
+                >Al corriente</span
+              >
             </div>
-            <div class="alert alert-info py-2 small border-0 shadow-sm">
-              ℹ️ 5 Actas listas para firma digital.
+            <div class="card-body p-0">
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name"
+                    >Formalización de Actas de Cabildo</span
+                  >
+                  <span class="small fw-bold">100%</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-success"
+                    style="width: 100%"
+                  ></div>
+                </div>
+              </div>
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name"
+                    >Publicación en Periódico Oficial</span
+                  >
+                  <span class="small fw-bold">80%</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-sustantiva"
+                    style="width: 80%"
+                  ></div>
+                </div>
+              </div>
             </div>
-            <hr />
-            <button class="btn btn-outline-primary btn-sm w-100 mb-2">
-              Descargar Reporte Diario
-            </button>
-            <button class="btn btn-primary btn-sm w-100">Nuevo Registro</button>
+          </div>
+        </div>
+
+        <!-- CONTRALORÍA / ÓRGANO INTERNO -->
+        <div class="col-md-6">
+          <div class="unit-card border-start border-4 border-danger">
+            <div class="unit-header">
+              <h5>🔍 Contraloría Interna</h5>
+              <span class="text-danger small fw-bold">Bajo Revisión</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name">Declaraciones Patrimoniales</span>
+                  <span class="small fw-bold">25%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-danger" style="width: 25%"></div>
+                </div>
+              </div>
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name">Auditorías de Desempeño</span>
+                  <span class="small fw-bold">55%</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-sustantiva"
+                    style="width: 55%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SERVICIOS PÚBLICOS -->
+        <div class="col-md-6">
+          <div class="unit-card">
+            <div class="unit-header">
+              <h5>🧹 Servicios Públicos</h5>
+              <span class="status-badge bg-info text-white">Operativo</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="process-row">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="process-name"
+                    >Bitácoras de Recolección de Residuos</span
+                  >
+                  <span class="small fw-bold">88%</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-sustantiva"
+                    style="width: 88%"
+                  ></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer class="text-center py-4 text-muted mt-5">
-      <small
-        >Plataforma de Gestión Documental Municipal &copy; 2024 | Versión
-        Demo</small
-      >
+    <footer class="py-4 text-center text-muted small">
+      Sistema de Inteligencia Gubernamental &copy; 2024 | Enfoque en Procesos
+      Sustantivos
     </footer>
 
-    <!-- SCRIPTS -->
     <script src="https://jsdelivr.net"></script>
-    <script>
-      const ctx = document.getElementById("chartDirecciones").getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: [
-            "Tesorería",
-            "Secretaría",
-            "Sindicatura",
-            "Contraloría",
-            "Seguridad",
-          ],
-          datasets: [
-            {
-              label: "Expedientes",
-              data: [450, 320, 180, 210, 80],
-              backgroundColor: "#3b82f6",
-              borderRadius: 8,
-              barThickness: 25,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: { beginAtZero: true, grid: { display: false } },
-            x: { grid: { display: false } },
-          },
-        },
-      });
-    </script>
   </body>
 </html>
