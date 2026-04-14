@@ -2,365 +2,274 @@
 <html lang="es" style="height: auto">
   <head>
     <meta charset="utf-8" />
-    <title>Sistema de Gestión y Control Documental</title>
+    <title>
+      Sistema de Gestión y Control Documental | Ley de Archivos Puebla
+    </title>
     <link rel="icon" type="image/png" href="https://supabase.co" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://jsdelivr.net" />
     <script src="https://jsdelivr.net"></script>
     <style>
       body {
-        background-color: #f8f9fa;
+        background-color: #f4f7f6;
         padding-top: 130px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
-      /* Estilo para imitar tu imagen con la funcionalidad de acordeón */
-      .accordion-item {
-        border: none;
-        background: transparent;
-        margin-bottom: 15px;
+      #header-fix {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
-      .accordion-button {
-        background-color: white !important;
-        border: 1px solid #333 !important;
-        border-radius: 12px !important;
-        padding: 15px 25px;
-        box-shadow: none !important;
+      .navbar-brand {
+        font-size: 1rem;
+        padding: 12px 20px;
       }
-      .accordion-button:not(.collapsed) {
-        border-bottom-left-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-      }
-      .accordion-collapse {
-        background: white;
-        border: 1px solid #333;
-        border-top: none;
-        border-radius: 0 0 12px 12px;
+      .nav-link {
+        color: white !important;
+        font-size: 0.85rem;
       }
 
-      .unit-info {
+      /* Estilo de Tarjetas de Unidad (Art. 21) */
+      .unit-card {
+        border: none;
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .unit-btn {
+        background: white !important;
+        border-radius: 10px !important;
+        padding: 18px;
+        border: none !important;
+        width: 100%;
         display: flex;
         justify-content: space-between;
-        width: 100%;
-        padding-right: 20px;
-        font-weight: bold;
-      }
-      .dot {
-        color: #d9534f;
-        margin-right: 10px;
+        align-items: center;
       }
 
-      /* Barras de progreso delgadas de la imagen */
+      /* Botones de Acción para Servidores Públicos */
+      .btn-action {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-left: 5px;
+      }
+      .btn-download {
+        background-color: #e2e8f0;
+        color: #475569;
+      }
+      .btn-consult {
+        background-color: #3b82f6;
+        color: white;
+      }
+
+      /* Indicadores de Ciclo Vital (Art. 4-XIV) */
+      .lifecycle-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: #94a3b8;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+      }
       .process-row {
         padding: 15px 25px;
-        border-top: 1px solid #eee;
-      }
-      .process-info {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.85rem;
-        color: #666;
-        margin-bottom: 5px;
+        border-top: 1px solid #f1f5f9;
       }
       .progress-thin {
-        height: 4px;
-        background-color: #f0f0f0;
+        height: 5px;
+        background-color: #f1f5f9;
         border-radius: 10px;
+        margin-top: 6px;
+      }
+
+      footer {
+        background-color: #566573;
+        color: white;
+        font-size: 0.8rem;
+        padding: 15px;
+        text-align: center;
       }
     </style>
   </head>
   <body id="main-container">
-    <!-- HEADER ORIGINAL (RESPETADO) -->
-    <div id="header-fix" class="header fixed">
-      <div class="site-width">
-        <nav class="navbar expand" style="background-color: #d5d8dc">
-          <div class="navbar-brand align-text-left">
-            <strong>Sistema de Gestión y Control Documental</strong>
-          </div>
-        </nav>
-      </div>
-      <div class="top-menu">
-        <nav
-          class="navbar navbar-expand justify-content-end px-3"
-          style="background-color: #566573"
-        >
-          <strong class="navbar-nav d-flex flex-row gap-3">
-            <li class="nav-item">
-              <a class="nav-link text-white" href="javascript:void(0);"
-                >Inicio</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="javascript:void(0);"
-                >Registros</a
-              >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle text-white"
-                href="#"
-                data-bs-toggle="dropdown"
-                >Año</a
-              >
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="javascript:void(0);">2025</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="javascript:void(0);">2024</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="javascript:void(0);"
-                >Cerrar sesión</a
-              >
-            </li>
-          </strong>
-        </nav>
-      </div>
+    <!-- HEADER: Identidad Institucional -->
+    <div id="header-fix">
+      <nav class="navbar" style="background-color: #d5d8dc">
+        <div class="navbar-brand">
+          <strong
+            >Sistema de Gestión y Control Documental (Ley de Archivos
+            Puebla)</strong
+          >
+        </div>
+      </nav>
+      <nav
+        class="navbar navbar-expand justify-content-end px-3"
+        style="background-color: #566573"
+      >
+        <ul class="navbar-nav flex-row gap-3">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"
+              >SISTEMA INSTITUCIONAL (Art. 20)</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"
+              >REGISTRO NACIONAL (Art. 11-IV)</a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              data-bs-toggle="dropdown"
+              >INSTRUMENTOS (Art. 13)</a
+            >
+            <ul class="dropdown-menu dropdown-menu-end bg-secondary">
+              <li>
+                <a class="dropdown-item text-white" href="#"
+                  >Cuadro General (CGCA)</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item text-white" href="#"
+                  >Catálogo de Disposición (CADIDO)</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item text-white" href="#"
+                  >Inventarios Documentales</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);">SALIR</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
-    <!-- CONTENIDO: 7 ÁREAS EN ACORDEÓN -->
-    <main class="container mt-4 pb-5">
-      <div class="mb-3 px-2">
-        <div class="small">Cumplimiento Global <strong>82%</strong></div>
-        <div class="small">Procesos en Alerta <strong>04</strong></div>
+    <main class="container mb-5 pb-5">
+      <div class="alert alert-info py-2" style="font-size: 0.8rem">
+        <strong>Nota:</strong> Los documentos electrónicos aquí gestionados
+        cuentan con validez jurídica según el <strong>Art. 48</strong> de la
+        Ley.
       </div>
 
-      <div class="accordion" id="mainAcc">
-        <!-- 1. TESORERIA -->
-        <div class="accordion-item">
+      <div class="accordion" id="leyArchivosAcc">
+        <!-- ÁREA 1: TESORERÍA (PROCESOS SUSTANTIVOS) -->
+        <div class="accordion-item unit-card">
           <h2 class="accordion-header">
             <button
-              class="accordion-button collapsed"
+              class="unit-btn collapsed"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#area1"
+              data-bs-target="#tesoreria"
             >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Tesorería Municipal</span
-                ><span>Critico</span>
-              </div>
+              <span
+                ><strong style="color: #334155">TESORERÍA MUNICIPAL</strong>
+                <small class="ms-2 text-muted">| Art. 21-II</small></span
+              >
+              <span class="badge bg-danger">4 PENDIENTES</span>
             </button>
           </h2>
           <div
-            id="area1"
+            id="tesoreria"
             class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
+            data-bs-parent="#leyArchivosAcc"
           >
-            <div class="process-row">
-              <div class="process-info">
-                <span>Recaudación Predial 2024</span><span>92%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-dark" style="width: 92%"></div>
-              </div>
-            </div>
-            <div class="process-row">
-              <div class="process-info">
-                <span>Cierre de Cuenta Pública</span><span>35%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-danger" style="width: 35%"></div>
+            <div class="accordion-body p-0">
+              <!-- Proceso Sustantivo -->
+              <div class="process-row">
+                <span class="lifecycle-label"
+                  >Archivo de Trámite (Art. 4-V)</span
+                >
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between small">
+                      <span>Cuenta Pública 2024 (Digitalización Art. 47)</span>
+                      <strong>65%</strong>
+                    </div>
+                    <div class="progress-thin">
+                      <div
+                        class="progress-bar bg-primary"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="ms-4">
+                    <a href="#" class="btn-action btn-consult">Consultar</a>
+                    <a href="#" class="btn-action btn-download">Descargar</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 2. ADJUDICACIONES -->
-        <div class="accordion-item">
+        <!-- ÁREA 2: RECURSOS HUMANOS (VALORACIÓN DOCUMENTAL) -->
+        <div class="accordion-item unit-card">
           <h2 class="accordion-header">
             <button
-              class="accordion-button collapsed"
+              class="unit-btn collapsed"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#area2"
+              data-bs-target="#rh"
             >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Adjudicaciones</span
-                ><span>En Proceso</span>
-              </div>
+              <span
+                ><strong style="color: #334155">RECURSOS HUMANOS</strong>
+                <small class="ms-2 text-muted">| Art. 50</small></span
+              >
+              <span class="badge bg-success">COMPLETO</span>
             </button>
           </h2>
           <div
-            id="area2"
+            id="rh"
             class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
+            data-bs-parent="#leyArchivosAcc"
           >
-            <div class="process-row">
-              <div class="process-info">
-                <span>Adjudicaciones Directas</span><span>60%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-dark" style="width: 60%"></div>
+            <div class="accordion-body p-0">
+              <div class="process-row">
+                <span class="lifecycle-label"
+                  >Valoración Documental (Art. 56)</span
+                >
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between small">
+                      <span
+                        >Expedientes de Personal (Ficha Técnica Art. 51)</span
+                      >
+                      <strong>100%</strong>
+                    </div>
+                    <div class="progress-thin">
+                      <div
+                        class="progress-bar bg-success"
+                        style="width: 100%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="ms-4">
+                    <a href="#" class="btn-action btn-consult">Expedientes</a>
+                    <a href="#" class="btn-action btn-download">Layout</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 3. CONTRALORIA -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area3"
-            >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Contraloría</span
-                ><span>Al Corriente</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area3"
-            class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
-          >
-            <div class="process-row text-muted small px-4 py-3">
-              Seguimiento de auditorías internas sin observaciones.
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. JURIDICO -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area4"
-            >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Jurídico</span
-                ><span>Revisión</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area4"
-            class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
-          >
-            <div class="process-row">
-              <div class="process-info">
-                <span>Convenios Legales</span><span>45%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-warning" style="width: 45%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. INGRESOS -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area5"
-            >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Ingresos</span
-                ><span>Estable</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area5"
-            class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
-          >
-            <div class="process-row">
-              <div class="process-info">
-                <span>Corte de Caja Diario</span><span>100%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-success" style="width: 100%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6. EGRESOS -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area6"
-            >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Egresos</span
-                ><span>Operativo</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area6"
-            class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
-          >
-            <div class="process-row">
-              <div class="process-info">
-                <span>Comprobación de Viáticos</span><span>72%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-dark" style="width: 72%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 7. RECURSOS HUMANOS -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area7"
-            >
-              <div class="unit-info">
-                <span><span class="dot">✦</span> Recursos Humanos</span
-                ><span>Pendiente</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area7"
-            class="accordion-collapse collapse"
-            data-bs-parent="#mainAcc"
-          >
-            <div class="process-row">
-              <div class="process-info">
-                <span>Expedientes de Empleados</span><span>20%</span>
-              </div>
-              <div class="progress-thin">
-                <div class="progress-bar bg-danger" style="width: 20%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- MÁS ÁREAS (ADJUDICACIONES, CONTRALORÍA, ETC.) SE AGREGAN SIGUIENDO ESTA ESTRUCTURA -->
       </div>
     </main>
 
-    <!-- FOOTER ORIGINAL (RESPETADO) -->
-    <footer
-      class="text-center py-3"
-      style="
-        background-color: #566573;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-      "
-    >
-      Sistema de Gestión y Control Documental ©
+    <footer>
+      Sistema de Gestión y Control Documental © | Fundamentado en la Ley de
+      Archivos del Estado de Puebla
     </footer>
   </body>
 </html>
