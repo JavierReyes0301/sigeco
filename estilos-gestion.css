@@ -1,0 +1,130 @@
+/* sistema-archivos.css */
+:root {
+  --primary-gov: #1e293b;
+  --secondary-gov: #455a64;
+  --accent-blue: #3b82f6;
+  --bg-light: #f8fafc;
+}
+
+body {
+  background-color: var(--bg-light);
+  padding-top: 170px;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Header con jerarquía legal */
+#header-fix {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.top-identity {
+  background-color: #d5d8dc;
+  padding: 10px 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary-gov);
+}
+
+.nav-legal {
+  background-color: var(--secondary-gov);
+  padding: 15px 40px;
+}
+
+.nav-legal ul {
+  list-style: disc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-legal li {
+  color: white;
+  font-size: 0.8rem;
+}
+.nav-legal a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Contenedores de Series Documentales (Art. 13 Ley Archivos) */
+.serie-documental {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid var(--accent-blue);
+}
+
+.serie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.serie-title h5 {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--primary-gov);
+}
+
+.ley-tag {
+  font-size: 0.65rem;
+  background: #e2e8f0;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--secondary-gov);
+}
+
+/* Visor de Archivos (Agilidad de Consulta) */
+.file-list {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.85rem;
+}
+
+.file-item:last-child {
+  border: none;
+}
+
+/* Botonera de Gestión */
+.btn-gov {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: none;
+  transition: 0.2s;
+}
+
+.btn-consultar {
+  background: var(--accent-blue);
+  color: white;
+}
+.btn-descargar {
+  background: #cbd5e1;
+  color: var(--primary-gov);
+}
+
+footer {
+  background: var(--secondary-gov);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.75rem;
+}

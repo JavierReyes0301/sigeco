@@ -1,300 +1,93 @@
-<!doctype html>
-<html lang="es" style="height: auto">
-  <head>
-    <meta charset="utf-8" />
-    <title>Sistema de Gestión y Control Documental</title>
-    <link rel="icon" type="image/png" href="https://supabase.co" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://jsdelivr.net" />
-    <script src="https://jsdelivr.net"></script>
-    <style>
-      body {
-        background-color: #f8f9fa;
-        padding-top: 130px;
-      }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Plataforma Institucional de Gestión Documental</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <link rel="stylesheet" href="sistema-archivos.css">
+</head>
+<body>
 
-      /* Estilo de la Barra (Header intacto) */
-      #header-fix {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      .navbar-brand {
-        font-size: 1rem;
-        padding: 12px 20px;
-      }
-      .nav-link {
-        color: white !important;
-        font-size: 0.85rem;
-        padding: 10px 15px !important;
-      }
-
-      /* DISEÑO DE LA IMAGEN: Acordeón minimalista */
-      .accordion-item {
-        border: 1px solid #dee2e6;
-        margin-bottom: 20px;
-        border-radius: 15px !important;
-        overflow: hidden;
-        background: white;
-      }
-      .accordion-button {
-        background-color: white !important;
-        padding: 15px 25px;
-        box-shadow: none !important;
-      }
-      .unit-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding-right: 25px;
-      }
-      .unit-name {
-        font-weight: bold;
-        color: #333;
-        font-size: 0.95rem;
-      }
-      .status-tag {
-        font-weight: bold;
-        font-size: 0.85rem;
-      }
-
-      /* PROCESOS Y BOTONES (Funcionalidad para el Servidor Público) */
-      .process-row {
-        padding: 15px 25px;
-        border-bottom: 1px solid #f8f9fa;
-        display: flex;
-        align-items: center;
-      }
-      .process-data {
-        flex-grow: 1;
-        margin-right: 20px;
-      }
-      .process-header {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.8rem;
-        color: #666;
-        margin-bottom: 5px;
-      }
-      .progress-thin {
-        height: 4px;
-        background-color: #eee;
-        border-radius: 10px;
-      }
-
-      /* Botones de Consulta y Descarga (Ley de Archivos Art. 5) */
-      .action-btns {
-        display: flex;
-        gap: 8px;
-      }
-      .btn-doc {
-        font-size: 0.7rem;
-        padding: 5px 12px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: bold;
-        border: 1px solid #ddd;
-      }
-      .btn-view {
-        background: #3b82f6;
-        color: white;
-        border: none;
-      }
-      .btn-view:hover {
-        background: #2563eb;
-        color: white;
-      }
-      .btn-dl {
-        background: white;
-        color: #475569;
-      }
-      .btn-dl:hover {
-        background: #f1f5f9;
-      }
-    </style>
-  </head>
-  <body id="main-container">
-    <!-- HEADER: Mantenemos tu estructura de dos niveles -->
-    <div id="header-fix">
-      <nav class="navbar" style="background-color: #d5d8dc">
-        <div class="navbar-brand">
-          <strong>Sistema de Gestión y Control Documental</strong>
+    <header id="header-fix">
+        
+            GOBIERNO MUNICIPAL | Sistema de Gestión y Control Documental
         </div>
-      </nav>
-      <nav
-        class="navbar navbar-expand justify-content-end px-3"
-        style="background-color: #566573"
-      >
-        <ul class="navbar-nav flex-row gap-3">
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">Registros</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              data-bs-toggle="dropdown"
-              >Año</a
-            >
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);">2025</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);">2024</a>
-              </li>
+        <nav class="nav-legal">
+            <ul>
+                <li><a href="#">Ficha Técnica de Prevaloración (Art. 51 LA)</a></li>
+                <li><a href="#">Cuadro General de Clasificación (CGCA)</a></li>
+                <li><a href="#">Inventario de Transferencia (Art. 17 LER)</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">Cerrar sesión</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+        </nav>
+    </header>
 
-    <main class="container mt-4 pb-5">
-      <!-- Indicadores Globales (Fundamento Art. 11) -->
-      <div class="px-2 mb-4">
-        <div class="small">Cumplimiento Global <strong>82%</strong></div>
-        <div class="small text-danger">
-          Procesos en Alerta <strong>04</strong>
+    <main class="container my-4">
+        
+        <div class="mb-4">
+            <h4 class="fw-bold">Acervo Digital Institucional</h4>
+            <p class="text-muted small">Consulta de expedientes con validez jurídica según Art. 48 de la Ley de Archivos.</p>
         </div>
-      </div>
 
-      <div class="accordion" id="leyAcc">
-        <!-- TESORERÍA MUNICIPAL -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area1"
-            >
-              <div class="unit-info">
-                <span
-                  ><span class="text-danger">✦</span>
-                  <span class="unit-name">Tesorería Municipal</span></span
-                >
-                <span class="status-tag">Crítico</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area1"
-            class="accordion-collapse collapse"
-            data-bs-parent="#leyAcc"
-          >
-            <div class="accordion-body p-0">
-              <!-- Fila de Proceso 1 -->
-              <div class="process-row">
-                <div class="process-data">
-                  <div class="process-header">
-                    <span>Recaudación Predial 2024 (Art. 4-XV)</span
-                    ><strong>92%</strong>
-                  </div>
-                  <div class="progress-thin">
-                    <div
-                      class="progress-bar bg-primary"
-                      style="width: 92%"
-                    ></div>
-                  </div>
+        <!-- SECCIÓN 1: GOBIERNO (ACTAS DE CABILDO) -->
+        <div class="serie-documental">
+            <div class="serie-header">
+                <div class="serie-title">
+                    <span class="ley-tag">Serie Sustantiva | Art. 17-I LER</span>
+                    <h5>Libros y Actas de Sesiones de Cabildo</h5>
                 </div>
-                <div class="action-btns">
-                  <a href="#" class="btn-doc btn-view">Consultar</a>
-                  <a href="#" class="btn-doc btn-dl">Descargar</a>
+                <div class="action-main">
+                    <button class="btn-gov btn-descargar">Descargar Año Completo</button>
                 </div>
-              </div>
-
-              <!-- Fila de Proceso 2 -->
-              <div class="process-row">
-                <div class="process-data">
-                  <div class="process-header">
-                    <span>Cierre de Cuenta Pública (Art. 21)</span
-                    ><strong>35%</strong>
-                  </div>
-                  <div class="progress-thin">
-                    <div
-                      class="progress-bar bg-danger"
-                      style="width: 35%"
-                    ></div>
-                  </div>
-                </div>
-                <div class="action-btns">
-                  <a href="#" class="btn-doc btn-view">Consultar</a>
-                  <a href="#" class="btn-doc btn-dl">Descargar</a>
-                </div>
-              </div>
             </div>
-          </div>
+            
+            <div class="file-list">
+                <div class="file-item">
+                    <span>Acta de Sesión Ordinaria - 15/Mar/2024</span>
+                    <div>
+                        <button class="btn-gov btn-consultar">Visualizar</button>
+                        <button class="btn-gov btn-descargar">PDF</button>
+                    </div>
+                </div>
+                <div class="file-item">
+                    <span>Acta de Sesión Extraordinaria - 02/Feb/2024</span>
+                    <div>
+                        <button class="btn-gov btn-consultar">Visualizar</button>
+                        <button class="btn-gov btn-descargar">PDF</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- RECURSOS HUMANOS -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#area2"
-            >
-              <div class="unit-info">
-                <span
-                  ><span class="text-success">✦</span>
-                  <span class="unit-name">Recursos Humanos</span></span
-                >
-                <span class="status-tag text-success">Al Corriente</span>
-              </div>
-            </button>
-          </h2>
-          <div
-            id="area2"
-            class="accordion-collapse collapse"
-            data-bs-parent="#leyAcc"
-          >
-            <div class="accordion-body p-0">
-              <div class="process-row">
-                <div class="process-data">
-                  <div class="process-header">
-                    <span>Expedientes de Personal (Art. 50)</span
-                    ><strong>100%</strong>
-                  </div>
-                  <div class="progress-thin">
-                    <div
-                      class="progress-bar bg-success"
-                      style="width: 100%"
-                    ></div>
-                  </div>
+        <!-- SECCIÓN 2: HACIENDA (REGISTROS FISCALES) -->
+        <div class="serie-documental" style="border-left-color: #10b981;">
+            <div class="serie-header">
+                <div class="serie-title">
+                    <span class="ley-tag">Serie Comprobatoria | Art. 17-XII LER</span>
+                    <h5>Registros Fiscales y Recaudación</h5>
                 </div>
-                <div class="action-btns">
-                  <a href="#" class="btn-doc btn-view">Consultar</a>
-                  <a href="#" class="btn-doc btn-dl">Descargar</a>
+                <div class="action-main">
+                    <button class="btn-gov btn-descargar">Exportar Respaldo</button>
                 </div>
-              </div>
             </div>
-          </div>
+            
+            <div class="file-list">
+                <div class="file-item">
+                    <span>Padrón de Contribuyentes Predial 2024 (Corte Mensual)</span>
+                    <div>
+                        <button class="btn-gov btn-consultar">Consultar</button>
+                        <button class="btn-gov btn-descargar">XLSX</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
     </main>
 
-    <!-- FOOTER ORIGINAL -->
-    <footer
-      class="text-center py-3"
-      style="
-        background-color: #566573;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-      "
-    >
-      Sistema de Gestión y Control Documental ©
+    <footer>
+        Fundamentado en la Ley de Archivos y Ley de Entrega-Recepción del Estado de Puebla. 
+        <br>Garantía de inalterabilidad y conservación a largo plazo (Art. 6 TER).
     </footer>
-  </body>
+
+    <script src="https://jsdelivr.net"></script>
+</body>
 </html>
