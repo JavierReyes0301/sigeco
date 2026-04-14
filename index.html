@@ -2,19 +2,18 @@
 <html lang="es" style="height: auto">
   <head>
     <meta charset="utf-8" />
-    <title>
-      Sistema de Gestión y Control Documental | Ley de Archivos Puebla
-    </title>
+    <title>Sistema de Gestión y Control Documental</title>
     <link rel="icon" type="image/png" href="https://supabase.co" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://jsdelivr.net" />
     <script src="https://jsdelivr.net"></script>
     <style>
       body {
-        background-color: #f4f7f6;
+        background-color: #f8f9fa;
         padding-top: 130px;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
+
+      /* Estilo de la Barra (Header intacto) */
       #header-fix {
         position: fixed;
         top: 0;
@@ -29,82 +28,100 @@
       .nav-link {
         color: white !important;
         font-size: 0.85rem;
+        padding: 10px 15px !important;
       }
 
-      /* Estilo de Tarjetas de Unidad (Art. 21) */
-      .unit-card {
-        border: none;
+      /* DISEÑO DE LA IMAGEN: Acordeón minimalista */
+      .accordion-item {
+        border: 1px solid #dee2e6;
+        margin-bottom: 20px;
+        border-radius: 15px !important;
+        overflow: hidden;
         background: white;
-        margin-bottom: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
-      .unit-btn {
-        background: white !important;
-        border-radius: 10px !important;
-        padding: 18px;
-        border: none !important;
-        width: 100%;
+      .accordion-button {
+        background-color: white !important;
+        padding: 15px 25px;
+        box-shadow: none !important;
+      }
+      .unit-info {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
+        padding-right: 25px;
       }
-
-      /* Botones de Acción para Servidores Públicos */
-      .btn-action {
-        font-size: 0.75rem;
-        padding: 4px 10px;
-        border-radius: 5px;
-        text-decoration: none;
-        margin-left: 5px;
-      }
-      .btn-download {
-        background-color: #e2e8f0;
-        color: #475569;
-      }
-      .btn-consult {
-        background-color: #3b82f6;
-        color: white;
-      }
-
-      /* Indicadores de Ciclo Vital (Art. 4-XIV) */
-      .lifecycle-label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        color: #94a3b8;
+      .unit-name {
         font-weight: bold;
-        margin-bottom: 8px;
-        display: block;
+        color: #333;
+        font-size: 0.95rem;
       }
+      .status-tag {
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+
+      /* PROCESOS Y BOTONES (Funcionalidad para el Servidor Público) */
       .process-row {
         padding: 15px 25px;
-        border-top: 1px solid #f1f5f9;
+        border-bottom: 1px solid #f8f9fa;
+        display: flex;
+        align-items: center;
+      }
+      .process-data {
+        flex-grow: 1;
+        margin-right: 20px;
+      }
+      .process-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 5px;
       }
       .progress-thin {
-        height: 5px;
-        background-color: #f1f5f9;
+        height: 4px;
+        background-color: #eee;
         border-radius: 10px;
-        margin-top: 6px;
       }
 
-      footer {
-        background-color: #566573;
+      /* Botones de Consulta y Descarga (Ley de Archivos Art. 5) */
+      .action-btns {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-doc {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid #ddd;
+      }
+      .btn-view {
+        background: #3b82f6;
         color: white;
-        font-size: 0.8rem;
-        padding: 15px;
-        text-align: center;
+        border: none;
+      }
+      .btn-view:hover {
+        background: #2563eb;
+        color: white;
+      }
+      .btn-dl {
+        background: white;
+        color: #475569;
+      }
+      .btn-dl:hover {
+        background: #f1f5f9;
       }
     </style>
   </head>
   <body id="main-container">
-    <!-- HEADER: Identidad Institucional -->
+    <!-- HEADER: Mantenemos tu estructura de dos niveles -->
     <div id="header-fix">
       <nav class="navbar" style="background-color: #d5d8dc">
         <div class="navbar-brand">
-          <strong
-            >Sistema de Gestión y Control Documental (Ley de Archivos
-            Puebla)</strong
-          >
+          <strong>Sistema de Gestión y Control Documental</strong>
         </div>
       </nav>
       <nav
@@ -113,163 +130,171 @@
       >
         <ul class="navbar-nav flex-row gap-3">
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"
-              >SISTEMA INSTITUCIONAL (Art. 20)</a
-            >
+            <a class="nav-link" href="javascript:void(0);">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"
-              >REGISTRO NACIONAL (Art. 11-IV)</a
-            >
+            <a class="nav-link" href="javascript:void(0);">Registros</a>
           </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
               data-bs-toggle="dropdown"
-              >INSTRUMENTOS (Art. 13)</a
+              >Año</a
             >
-            <ul class="dropdown-menu dropdown-menu-end bg-secondary">
+            <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item text-white" href="#"
-                  >Cuadro General (CGCA)</a
-                >
+                <a class="dropdown-item" href="javascript:void(0);">2025</a>
               </li>
               <li>
-                <a class="dropdown-item text-white" href="#"
-                  >Catálogo de Disposición (CADIDO)</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item text-white" href="#"
-                  >Inventarios Documentales</a
-                >
+                <a class="dropdown-item" href="javascript:void(0);">2024</a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">SALIR</a>
+            <a class="nav-link" href="javascript:void(0);">Cerrar sesión</a>
           </li>
         </ul>
       </nav>
     </div>
 
-    <main class="container mb-5 pb-5">
-      <div class="alert alert-info py-2" style="font-size: 0.8rem">
-        <strong>Nota:</strong> Los documentos electrónicos aquí gestionados
-        cuentan con validez jurídica según el <strong>Art. 48</strong> de la
-        Ley.
+    <main class="container mt-4 pb-5">
+      <!-- Indicadores Globales (Fundamento Art. 11) -->
+      <div class="px-2 mb-4">
+        <div class="small">Cumplimiento Global <strong>82%</strong></div>
+        <div class="small text-danger">
+          Procesos en Alerta <strong>04</strong>
+        </div>
       </div>
 
-      <div class="accordion" id="leyArchivosAcc">
-        <!-- ÁREA 1: TESORERÍA (PROCESOS SUSTANTIVOS) -->
-        <div class="accordion-item unit-card">
+      <div class="accordion" id="leyAcc">
+        <!-- TESORERÍA MUNICIPAL -->
+        <div class="accordion-item">
           <h2 class="accordion-header">
             <button
-              class="unit-btn collapsed"
+              class="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#tesoreria"
+              data-bs-target="#area1"
             >
-              <span
-                ><strong style="color: #334155">TESORERÍA MUNICIPAL</strong>
-                <small class="ms-2 text-muted">| Art. 21-II</small></span
-              >
-              <span class="badge bg-danger">4 PENDIENTES</span>
+              <div class="unit-info">
+                <span
+                  ><span class="text-danger">✦</span>
+                  <span class="unit-name">Tesorería Municipal</span></span
+                >
+                <span class="status-tag">Crítico</span>
+              </div>
             </button>
           </h2>
           <div
-            id="tesoreria"
+            id="area1"
             class="accordion-collapse collapse"
-            data-bs-parent="#leyArchivosAcc"
+            data-bs-parent="#leyAcc"
           >
             <div class="accordion-body p-0">
-              <!-- Proceso Sustantivo -->
+              <!-- Fila de Proceso 1 -->
               <div class="process-row">
-                <span class="lifecycle-label"
-                  >Archivo de Trámite (Art. 4-V)</span
-                >
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between small">
-                      <span>Cuenta Pública 2024 (Digitalización Art. 47)</span>
-                      <strong>65%</strong>
-                    </div>
-                    <div class="progress-thin">
-                      <div
-                        class="progress-bar bg-primary"
-                        style="width: 65%"
-                      ></div>
-                    </div>
+                <div class="process-data">
+                  <div class="process-header">
+                    <span>Recaudación Predial 2024 (Art. 4-XV)</span
+                    ><strong>92%</strong>
                   </div>
-                  <div class="ms-4">
-                    <a href="#" class="btn-action btn-consult">Consultar</a>
-                    <a href="#" class="btn-action btn-download">Descargar</a>
+                  <div class="progress-thin">
+                    <div
+                      class="progress-bar bg-primary"
+                      style="width: 92%"
+                    ></div>
                   </div>
+                </div>
+                <div class="action-btns">
+                  <a href="#" class="btn-doc btn-view">Consultar</a>
+                  <a href="#" class="btn-doc btn-dl">Descargar</a>
+                </div>
+              </div>
+
+              <!-- Fila de Proceso 2 -->
+              <div class="process-row">
+                <div class="process-data">
+                  <div class="process-header">
+                    <span>Cierre de Cuenta Pública (Art. 21)</span
+                    ><strong>35%</strong>
+                  </div>
+                  <div class="progress-thin">
+                    <div
+                      class="progress-bar bg-danger"
+                      style="width: 35%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="action-btns">
+                  <a href="#" class="btn-doc btn-view">Consultar</a>
+                  <a href="#" class="btn-doc btn-dl">Descargar</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ÁREA 2: RECURSOS HUMANOS (VALORACIÓN DOCUMENTAL) -->
-        <div class="accordion-item unit-card">
+        <!-- RECURSOS HUMANOS -->
+        <div class="accordion-item">
           <h2 class="accordion-header">
             <button
-              class="unit-btn collapsed"
+              class="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#rh"
+              data-bs-target="#area2"
             >
-              <span
-                ><strong style="color: #334155">RECURSOS HUMANOS</strong>
-                <small class="ms-2 text-muted">| Art. 50</small></span
-              >
-              <span class="badge bg-success">COMPLETO</span>
+              <div class="unit-info">
+                <span
+                  ><span class="text-success">✦</span>
+                  <span class="unit-name">Recursos Humanos</span></span
+                >
+                <span class="status-tag text-success">Al Corriente</span>
+              </div>
             </button>
           </h2>
           <div
-            id="rh"
+            id="area2"
             class="accordion-collapse collapse"
-            data-bs-parent="#leyArchivosAcc"
+            data-bs-parent="#leyAcc"
           >
             <div class="accordion-body p-0">
               <div class="process-row">
-                <span class="lifecycle-label"
-                  >Valoración Documental (Art. 56)</span
-                >
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between small">
-                      <span
-                        >Expedientes de Personal (Ficha Técnica Art. 51)</span
-                      >
-                      <strong>100%</strong>
-                    </div>
-                    <div class="progress-thin">
-                      <div
-                        class="progress-bar bg-success"
-                        style="width: 100%"
-                      ></div>
-                    </div>
+                <div class="process-data">
+                  <div class="process-header">
+                    <span>Expedientes de Personal (Art. 50)</span
+                    ><strong>100%</strong>
                   </div>
-                  <div class="ms-4">
-                    <a href="#" class="btn-action btn-consult">Expedientes</a>
-                    <a href="#" class="btn-action btn-download">Layout</a>
+                  <div class="progress-thin">
+                    <div
+                      class="progress-bar bg-success"
+                      style="width: 100%"
+                    ></div>
                   </div>
+                </div>
+                <div class="action-btns">
+                  <a href="#" class="btn-doc btn-view">Consultar</a>
+                  <a href="#" class="btn-doc btn-dl">Descargar</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- MÁS ÁREAS (ADJUDICACIONES, CONTRALORÍA, ETC.) SE AGREGAN SIGUIENDO ESTA ESTRUCTURA -->
       </div>
     </main>
 
-    <footer>
-      Sistema de Gestión y Control Documental © | Fundamentado en la Ley de
-      Archivos del Estado de Puebla
+    <!-- FOOTER ORIGINAL -->
+    <footer
+      class="text-center py-3"
+      style="
+        background-color: #566573;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      "
+    >
+      Sistema de Gestión y Control Documental ©
     </footer>
   </body>
 </html>
