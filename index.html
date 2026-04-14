@@ -4,31 +4,31 @@
     <meta charset="utf-8" />
     <title>Sistema de Gestión y Control Documental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://jsdelivr.net" />
     <style>
       body {
         font-family: sans-serif;
-        background-color: #f4f7f6;
-        padding-top: 110px;
+        background-color: #f8f9fa;
+        padding-top: 130px;
       }
 
-      /* Estilos Header (Basados en tu código enviado) */
+      /* HEADER (Estructura base SISEOP) */
       #header-fix {
         position: fixed;
         top: 0;
         width: 100%;
         z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
       .navbar-brand {
         font-size: 1.1rem;
         padding: 12px 20px;
+        color: #333;
       }
       .nav-link {
         color: white !important;
         font-size: 0.9rem;
+        padding: 10px 15px !important;
       }
       .dropdown-menu {
         background-color: #566573;
@@ -38,159 +38,375 @@
         color: white;
       }
 
-      /* Estilos Cuerpo (Basados en la imagen) */
-      .summary-text {
-        font-size: 0.9rem;
-        color: #444;
-        margin-bottom: 20px;
+      /* CONTENEDOR PRINCIPAL */
+      .summary-header {
+        font-size: 0.85rem;
+        color: #555;
+        padding: 10px 20px;
       }
-      .unit-section {
+
+      /* ESTILO DE ACORDEÓN (Inspirado en la imagen) */
+      .accordion-item {
+        border: none;
         background: white;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
+        border-radius: 8px !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
       }
-      .unit-header {
+      .accordion-button {
+        background: white !important;
+        border-radius: 8px !important;
+        padding: 20px;
+        box-shadow: none !important;
+      }
+      .accordion-button:not(.collapsed) {
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* Elementos dentro del acordeón */
+      .unit-info {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
+        width: 100%;
+        padding-right: 20px;
       }
-      .unit-title {
-        font-size: 0.85rem;
+      .unit-name {
+        font-size: 0.9rem;
         font-weight: bold;
-        color: #333;
       }
-      .status-label {
+      .status-badge {
         font-size: 0.75rem;
         font-weight: bold;
       }
 
-      /* Barras de progreso sutiles como en la imagen */
       .process-item {
-        margin-bottom: 15px;
+        padding: 5px 0 15px 0;
       }
       .process-label {
-        font-size: 0.85rem;
-        color: #555;
-        margin-bottom: 5px;
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
       }
       .progress-thin {
-        height: 6px;
-        background-color: #e9ecef;
+        height: 5px;
+        background-color: #ececec;
         border-radius: 10px;
       }
-      .progress-bar-custom {
+      .bar-blue {
         background-color: #3b82f6;
-        border-radius: 10px;
+      }
+      .bar-red {
+        background-color: #dc3545;
+      }
+      .bar-green {
+        background-color: #198754;
+      }
+
+      footer {
+        background-color: #566573;
+        color: white;
+        font-size: 0.8rem;
+        padding: 15px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
       }
     </style>
   </head>
   <body id="main-container">
-    <!-- HEADER (Tu base estructural) -->
-    <div id="header-fix" class="header">
-      <div class="site-width">
-        <nav class="navbar" style="background-color: #d5d8dc">
-          <div class="navbar-brand">
-            <strong>Sistema de Gestión y Control Documental</strong>
-          </div>
-        </nav>
-      </div>
-      <div class="top-menu">
-        <nav
-          class="navbar navbar-expand justify-content-end"
-          style="background-color: #566573"
-        >
-          <ul class="navbar-nav px-3">
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Registros</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-                >Año</a
-              >
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="javascript:void(0);">2025</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="javascript:void(0);">2024</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Cerrar sesión</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <!-- HEADER -->
+    <div id="header-fix">
+      <nav class="navbar" style="background-color: #d5d8dc">
+        <div class="navbar-brand">
+          <strong>Sistema de Gestión y Control Documental</strong>
+        </div>
+      </nav>
+      <nav
+        class="navbar navbar-expand justify-content-end"
+        style="background-color: #566573"
+      >
+        <ul class="navbar-nav px-3 flex-row gap-2">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);">Registros</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              data-bs-toggle="dropdown"
+              >Año</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="javascript:void(0);">2025</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:void(0);">2024</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);">Cerrar sesión</a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
-    <!-- MAIN CONTENT (Estilo visual de la imagen) -->
-    <main class="container mt-4">
-      <div class="summary-text px-2">
-        <div>Cumplimiento Global <strong>82%</strong></div>
-        <div>Procesos en Alerta <strong>04</strong></div>
+    <main class="container pb-5 mb-5">
+      <div class="summary-header">
+        <div>Cumplimiento Global <strong>78%</strong></div>
+        <div>Procesos en Alerta <strong>06</strong></div>
       </div>
 
-      <!-- Unidad Administrativa 1 -->
-      <div class="unit-section">
-        <div class="unit-header">
-          <span class="unit-title">🔸 Tesorería Municipal</span>
-          <span class="status-label text-danger">Crítico</span>
+      <div class="accordion" id="accGestion">
+        <!-- 1. TESORERIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area1"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Tesorería Municipal</span>
+                <span class="status-badge text-danger">Crítico</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area1"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Cierre de Cuenta Pública Mensual <span>35%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-red" style="width: 35%"></div>
+                </div>
+              </div>
+              <div class="process-item">
+                <div class="process-label">
+                  Recaudación Predial <span>92%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-blue" style="width: 92%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="process-item">
-          <div class="process-label">
-            Recaudación Predial 2024 <strong>92%</strong>
-          </div>
-          <div class="progress progress-thin">
-            <div
-              class="progress-bar progress-bar-custom"
-              style="width: 92%"
-            ></div>
+        <!-- 2. ADJUDICACIONES -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area2"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Adjudicaciones</span>
+                <span class="status-badge text-primary">En Proceso</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area2"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Licitaciones Públicas Vigentes <span>60%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-blue" style="width: 60%"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="process-item">
-          <div class="process-label">
-            Cierre de Cuenta Pública Mensual <strong>35%</strong>
-          </div>
-          <div class="progress progress-thin">
-            <div class="progress-bar bg-danger" style="width: 35%"></div>
+        <!-- 3. CONTRALORIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area3"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Contraloría</span>
+                <span class="status-badge text-success">Al Corriente</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area3"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Auditorías Internas <span>100%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-green" style="width: 100%"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Unidad Administrativa 2 -->
-      <div class="unit-section">
-        <div class="unit-header">
-          <span class="unit-title">🔸 Secretaría General</span>
-          <span class="status-label text-success">Al Corriente</span>
+        <!-- 4. JURIDICO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area4"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Jurídico</span>
+                <span class="status-badge text-warning">Revisión</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area4"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Convenios y Contratos <span>45%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-red" style="width: 45%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="process-item">
-          <div class="process-label">
-            Actas de Cabildo <strong>100%</strong>
+        <!-- 5. INGRESOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area5"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Ingresos</span>
+                <span class="status-badge text-success">Al Corriente</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area5"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Captación de Derechos <span>88%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-green" style="width: 88%"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="progress progress-thin">
-            <div class="progress-bar bg-success" style="width: 100%"></div>
+        </div>
+
+        <!-- 6. EGRESOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area6"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Egresos</span>
+                <span class="status-badge text-primary">Operativo</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area6"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Comprobación de Gasto <span>72%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-blue" style="width: 72%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. RECURSOS HUMANOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#area7"
+            >
+              <div class="unit-info">
+                <span class="unit-name">🔸 Recursos Humanos</span>
+                <span class="status-badge text-danger">Crítico</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="area7"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accGestion"
+          >
+            <div class="accordion-body">
+              <div class="process-item">
+                <div class="process-label">
+                  Expedientes de Personal Actualizados <span>20%</span>
+                </div>
+                <div class="progress progress-thin">
+                  <div class="progress-bar bar-red" style="width: 20%"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </main>
 
-    <footer
-      class="text-center py-3 mt-4"
-      style="background-color: #566573; color: white; font-size: 0.8rem"
-    >
+    <footer class="text-center">
       Sistema de Gestión y Control Documental ©
     </footer>
 
